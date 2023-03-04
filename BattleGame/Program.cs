@@ -13,10 +13,9 @@ class Program
 
         Battle battle = new(json_text1, json_text2);
 
-        ConsoleDrawer.DrawBattle(battle);
-
         while (true)
         {
+            ConsoleDrawer.DrawBattle(battle);
             Console.ReadKey();
             battle.MakeTurn();
         }

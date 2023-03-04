@@ -38,7 +38,17 @@ namespace BattleGame
                 opposingArmy = Army2;
             }
 
-            opposingArmy.units[unitPointer].TakeDamage(currentArmy.units[unitPointer]);
+            opposingArmy.units[0].TakeDamage(currentArmy.units[0]);
+            if (opposingArmy.units[0].HitPoints > 0)
+                currentArmy.units[0].TakeDamage(opposingArmy.units[0]);
+            else
+            {
+                turn++;
+                opposingArmy.units.RemoveAt(0);
+                return;
+            }
+
+            turn++;
         }
     }
 }

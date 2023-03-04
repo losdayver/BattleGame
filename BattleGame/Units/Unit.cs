@@ -10,7 +10,14 @@ namespace BattleGame.Units
     {
         public virtual int Attack { get; set; }
         public virtual int Defence { get; set; }
-        public virtual int HitPoints { get; set; }
+        private int _hitPoints;
+        public virtual int HitPoints {
+            get { return _hitPoints; }
+            set 
+            {
+                _hitPoints = Math.Max(value, 0);
+            }
+        }
         public int Price { 
             get 
             {
@@ -38,7 +45,7 @@ namespace BattleGame.Units
         }
         public virtual void TakeDamage(IUnit opponent)
         {
-            throw new NotImplementedException();
+            HitPoints -= opponent.Attack;
         }
 
         public override string ToString()
