@@ -16,7 +16,7 @@ namespace BattleGame
         {
             army_json jarmy = JsonConvert.DeserializeObject<army_json>(jsonText);
 
-            List<IUnit> units = new List<IUnit>();
+            List<Unit> units = new List<Unit>();
 
             for (int i = 0; i < jarmy.units.Length; i++)
             {
@@ -27,37 +27,34 @@ namespace BattleGame
                 units.Add(unit);
             }
 
-            var army = new Army();
+            var army = new Army(units, jarmy.TeamName);
 
-            army.units = units;
+            if (army.Price > 100)
+                throw new Exception("Превышена цена армии " + army.TeamName + ": " + army.Price);
 
-            IUnit ConvertJsonUnit(unit_json junit)
+            return army;
+
+            Unit ConvertJsonUnit(unit_json junit)
             {
-                IUnit unit;
+                Unit unit;
 
                 switch (junit.UnitName)
                 {
                     case "Light Infantry":
-                        unit = new LightInfantry();
+                        unit = new LightInfantry(junit.Attack, junit.Defence, junit.HitPoints);
                         break;
                     case "Heavy Infantry":
-                        unit = new HeavyInfantry();
+                        unit = new HeavyInfantry(junit.Attack, junit.Defence, junit.HitPoints);
                         break;
                     case "Knight":
-                        unit = new Knight();
+                        unit = new Knight(junit.Attack, junit.Defence, junit.HitPoints);
                         break;
                     default:
                         throw new Exception("Юнит не существует");
                 }
 
-                unit.Attack = junit.Attack;
-                unit.Defence = junit.Defence;
-                unit.HitPoints = junit.HitPoints;
-
                 return unit;
             }
-
-            return army;
         }
     }
 

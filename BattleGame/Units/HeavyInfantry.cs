@@ -8,5 +8,6 @@ namespace BattleGame.Units
 {
     internal class HeavyInfantry : Unit
     {
+        public HeavyInfantry(int attack, int defence, int hitPoints) : base(attack, defence, hitPoints) { }
     }
 }

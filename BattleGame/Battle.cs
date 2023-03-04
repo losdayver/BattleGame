@@ -9,32 +9,33 @@ namespace BattleGame
 {
     internal class Battle
     {
-        Army army1;
-        Army army2;
+        public Army Army1 { get; set; }
+        public Army Army2 { get; set; }
         Random rand = new Random();
-        int turn = 0;
+        public int turn = 0;
+        public int round = 0;
         int unitPointer = 0;
 
         public Battle(string json1, string json2) 
         {
             JsonLoader loader = new();
-            army1 = loader.LoadArmyFromJson(json1);
-            army2 = loader.LoadArmyFromJson(json2);  
+            Army1 = loader.LoadArmyFromJson(json1);
+            Army2 = loader.LoadArmyFromJson(json2);  
         }
-        void Turn()
+        public void MakeTurn()
         {
             Army currentArmy;
             Army opposingArmy;
 
             if (turn % 2 == 0)
             {
-                currentArmy = army2;
-                opposingArmy = army1;
+                currentArmy = Army2;
+                opposingArmy = Army1;
             }
             else
             {
-                currentArmy = army1;
-                opposingArmy = army2;
+                currentArmy = Army1;
+                opposingArmy = Army2;
             }
 
             opposingArmy.units[unitPointer].TakeDamage(currentArmy.units[unitPointer]);

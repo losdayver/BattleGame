@@ -8,6 +8,7 @@ namespace BattleGame.Units
 {
     internal interface IUnit
     {
+        public int Price { get; }
         public int Attack { get; set; }
         public int Defence { get; set; } 
         public int HitPoints { get; set; }

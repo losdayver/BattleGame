@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BattleGame.Units
 {
-    internal class Knight : Unit
+    internal interface ISpecialAbility
     {
-        public Knight(int attack, int defence, int hitPoints) : base(attack, defence, hitPoints) { }
+        public int SpecialAbilityStrength { get; set; }
+        public int SpecialAbilityRange { get; set; }
     }
 }

@@ -11,12 +11,17 @@ class Program
         string json_text1 = File.ReadAllText("..\\..\\..\\army1.json");
         string json_text2 = File.ReadAllText("..\\..\\..\\army2.json");
 
-        JsonLoader loader = new();
+        Battle battle = new(json_text1, json_text2);
 
-        var army1 = loader.LoadArmyFromJson(json_text1);
-        var army2 = loader.LoadArmyFromJson(json_text1);
+        ConsoleDrawer.DrawBattle(battle);
 
-        Console.WriteLine(army1);
-        Console.WriteLine(army2);
+        while (true)
+        {
+            Console.ReadKey();
+            battle.MakeTurn();
+        }
+
+        //Console.WriteLine(battle.Army1);
+        //Console.WriteLine(battle.Army2);
     }
 }

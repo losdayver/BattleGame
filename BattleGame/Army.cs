@@ -9,9 +9,29 @@ namespace BattleGame
 {
     internal class Army
     {
-        public List<IUnit> units = new List<IUnit>();
+        public string TeamName { get; set; }
 
-        public Army() { }
+        public List<Unit> units = new List<Unit>();
+
+        public int Price {
+            get
+            {
+                int result = 0;
+
+                foreach (var unit in units) 
+                {
+                    result += unit.Price;
+                }
+
+                return result;
+            }
+        }
+
+        public Army(List<Unit> units, string teamName) 
+        {
+            this.units = units;
+            TeamName = teamName;
+        }
 
         public override string ToString()
         {
