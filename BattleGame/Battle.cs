@@ -15,6 +15,8 @@ namespace BattleGame
         public int turn = 0;
         public int round = 0;
         int unitPointer = 0;
+        public bool winCondition = false;
+        public int whoWon = 0;
 
         public Battle(string json1, string json2) 
         {
@@ -24,6 +26,19 @@ namespace BattleGame
         }
         public void MakeTurn()
         {
+            if (!Army1.units.Any())
+            {
+                winCondition = true;
+                whoWon = 1;
+                return;
+            }
+            if (!Army2.units.Any())
+            {
+                winCondition = true;
+                whoWon = 2;
+                return;
+            }
+
             Army currentArmy;
             Army opposingArmy;
 

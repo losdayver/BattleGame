@@ -66,6 +66,12 @@ namespace BattleGame
 
             Console.SetCursorPosition(0, Console.GetCursorPosition().Top + 2);
             Console.WriteLine("__________________________________________________________________________\n");
+
+            if (battle.winCondition)
+            {
+                if (battle.whoWon == 1) Console.WriteLine("Army1 won!!!");
+                else if (battle.whoWon == 1) Console.WriteLine("Army2 won!!!");
+            }
         }
     }
 }
